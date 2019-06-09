@@ -29,7 +29,7 @@ def get_soup_forbes():
     chrome_options.add_argument('--no-sandbox')
     path = os.getcwd()+"/chromedriver"
     #driver = webdriver.Chrome(path, options=chrome_options)
-    driver = webdriver.Chrome(executable_path=CHROMEDRIVER_PATH, chrome_options=options)
+    driver = webdriver.Chrome(executable_path=CHROMEDRIVER_PATH, chrome_options=chrome_options)
     driver.get(url)
     time.sleep(5)
     htmlSource = driver.page_source
