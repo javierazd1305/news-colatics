@@ -17,8 +17,12 @@ def get_soup_forbes():
     forbes_url_init = "https://www.forbes.com/"
     topic = "ai-big-data"
     url = forbes_url_init + topic
+    GOOGLE_CHROME_BIN = os.environ.get('GOOGLE_CHROME_BIN', '/usr/bin/google-chrome')
     chrome_options = Options()
     chrome_options.add_argument('--headless')
+    chrome_options.binary_location = GOOGLE_CHROME_BIN
+    chrome_options.add_argument('--disable-gpu')
+    chrome_options.add_argument('--no-sandbox')
     path = os.getcwd()+"/chromedriver"
     driver = webdriver.Chrome(path, options=chrome_options)
     driver.get(url)
