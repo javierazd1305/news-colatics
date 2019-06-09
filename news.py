@@ -14,17 +14,22 @@ import time
 from apscheduler.schedulers.blocking import BlockingScheduler
 
 def get_soup_forbes():
+    CHROMEDRIVER_PATH = "/app/.chromedriver/bin/chromedriver"
+    GOOGLE_CHROME_BIN = os.environ.get('GOOGLE_CHROME_BIN', '/usr/bin/google-chrome')
+
     forbes_url_init = "https://www.forbes.com/"
     topic = "ai-big-data"
     url = forbes_url_init + topic
-    GOOGLE_CHROME_BIN = os.environ.get('GOOGLE_CHROME_BIN', '/usr/bin/google-chrome')
+
     chrome_options = Options()
     chrome_options.add_argument('--headless')
-    chrome_options.binary_location = GOOGLE_CHROME_BIN
+    chrome_bin = os.environ.get('GOOGLE_CHROME_BIN', "chromedriver")
+    chrome_options.binary_location = chrome_bin
     chrome_options.add_argument('--disable-gpu')
     chrome_options.add_argument('--no-sandbox')
     path = os.getcwd()+"/chromedriver"
-    driver = webdriver.Chrome(path, options=chrome_options)
+    #driver = webdriver.Chrome(path, options=chrome_options)
+    driver = webdriver.Chrome(executable_path=CHROMEDRIVER_PATH, chrome_options=options)
     driver.get(url)
     time.sleep(5)
     htmlSource = driver.page_source
@@ -161,8 +166,8 @@ sched = BlockingScheduler()
 
 @sched.scheduled_job('cron', day_of_week='sun', hour=17)
 def init():
-    McKinsey()
-    HBR()
+    #McKinsey()
+    #HBR()
     Forbes()
 
 init()
