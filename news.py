@@ -12,7 +12,7 @@ from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 import time
 from apscheduler.schedulers.blocking import BlockingScheduler
-
+from twitter_post import getTextDrive, postTwitter, updatePostStatus
 def get_soup_forbes():
     CHROMEDRIVER_PATH = "/app/.chromedriver/bin/chromedriver"
     GOOGLE_CHROME_BIN = os.environ.get('GOOGLE_CHROME_BIN', '/usr/bin/google-chrome')
@@ -168,6 +168,28 @@ def init():
     McKinsey()
     HBR()
     Forbes()
+@sched.scheduled_job('cron', day_of_week='mon-wed-fri-sun', hour=17)
+def wrapper():
+    username = "colatics.community@gmail.com"
+    password = "weed4269"
+    df_post = getTextDrive()
+    if df_post.shape[0]>0:
+        for index, row in df_post.iterrows():
+            twitter = row["twitter"]
+            facebook = row["facebook"]
+            instagram = row["instagram"]
+            text = row["text"]
+            if twitter != "ok":
+                print("twitter")
+                postTwitter(text, username, password)
+                updatePostStatus(index, 4)
+            if instagram != "ok":
+                pass
+                # print("instagram")
+                # updatePostStatus(index, 5)
+            if facebook != "ok":
+                pass
+                # print("facebok")
+                # updatePostStatus(index, 6)
 
-init()
 sched.start()
