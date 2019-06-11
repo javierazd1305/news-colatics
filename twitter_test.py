@@ -33,6 +33,14 @@ def postTwitter(text, username, password):
     password_field.send_keys(password)
     driver.implicitly_wait(1)
     driver.find_element_by_class_name("EdgeButtom--medium").click()
+    #wait = WebDriverWait(driver, 30)
+    #autotw1 = wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, "div[id='tweet-box-home-timeline']")))
+    try:
+        cell_text = driver.find_element_by_id("challenge_response")
+        cell_text.send_keys(951011969)
+        submit = driver.find_element_by_id("email_challenge_submit").click()
+    except:
+        pass
     autotw1 = WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.CSS_SELECTOR, "div[id='tweet-box-home-timeline']")))
     autotw1.send_keys(text)
     tweet = driver.find_element_by_xpath("//span[@class='add-tweet-button ']//following-sibling::button[contains(@class,'tweet-action')]")
