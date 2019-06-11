@@ -90,6 +90,6 @@ def wrapper():
             text = row["text"]
             if twitter != "ok":
                 print("twitter")
-                #postTwitter(text, username, password)
-                #updatePostStatus(index, 4)
+                postTwitter(text, username, password)
+                updatePostStatus(index, 4)
 wrapper()
