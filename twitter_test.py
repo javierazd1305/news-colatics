@@ -81,6 +81,7 @@ def wrapper():
     username = "colatics.community@gmail.com"
     password = "weed4269"
     df_post = getTextDrive()
+    print("get_df_post:", df_post.shape)
     if df_post.shape[0]>0:
         for index, row in df_post.iterrows():
             twitter = row["twitter"]
@@ -89,6 +90,6 @@ def wrapper():
             text = row["text"]
             if twitter != "ok":
                 print("twitter")
-                postTwitter(text, username, password)
-                updatePostStatus(index, 4)
+                #postTwitter(text, username, password)
+                #updatePostStatus(index, 4)
 wrapper()

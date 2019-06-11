@@ -161,14 +161,14 @@ def Forbes():
     print("finished Forbes")
 
 
-sched = BlockingScheduler()
+#sched = BlockingScheduler()
 
-@sched.scheduled_job('cron', day_of_week='sun', hour=17)
+#@sched.scheduled_job('cron', day_of_week='sun', hour=17)
 def init():
     McKinsey()
     HBR()
     Forbes()
-@sched.scheduled_job('cron', day_of_week='mon-wed-fri-sun', hour=17)
+#@sched.scheduled_job('cron', day_of_week='mon-wed-fri-sun', hour=17)
 def wrapper():
     username = "colatics.community@gmail.com"
     password = "weed4269"
@@ -192,4 +192,5 @@ def wrapper():
                 # print("facebok")
                 # updatePostStatus(index, 6)
 
-sched.start()
+#sched.start()
+init()
