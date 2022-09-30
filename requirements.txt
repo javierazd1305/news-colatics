@@ -16,7 +16,7 @@ gspread==3.1.0
 httplib2==0.13.0
 idna==2.8
 jmespath==0.9.4
-joblib==0.13.2
+joblib==1.2.0
 lxml==4.3.3
 networkx==2.3
 nltk==3.4.3
